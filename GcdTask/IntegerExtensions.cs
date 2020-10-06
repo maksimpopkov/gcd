@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace GcdTask
 {
@@ -14,7 +14,36 @@ namespace GcdTask
         /// <exception cref="ArgumentOutOfRangeException">Thrown when one or two numbers are int.MinValue.</exception>
         public static int FindGcd(int a, int b)
         {
-            throw new NotImplementedException("You need to implement this method.");
+            int gcd = 0;
+            if (a == 0 && b == 0)
+            {
+                throw new ArgumentException("Two numbers cannot be 0 at the same time.");
+            }
+
+            if ((a == int.MinValue) || (b == int.MinValue))
+            {
+                throw new ArgumentOutOfRangeException($"Number cannot be {int.MinValue}.");
+            }
+            else
+            {
+                while (b != 0)
+                {
+                    var temp = b;
+                    b = a % b;
+                    a = temp;
+                }
+
+                if (a < 0)
+                {
+                    gcd = a * -1;
+                }
+                else
+                {
+                    gcd = a;
+                }
+            }
+
+            return gcd;
         }
     }
 }
